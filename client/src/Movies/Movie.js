@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import MovieCard from "./MovieCard";
-import UpdateMovie from './UpdateMovie';
 
 export default class Movie extends React.Component {
   constructor(props) {
@@ -34,11 +33,13 @@ export default class Movie extends React.Component {
     addToSavedList(this.state.movie);
   };
 
-  deleteMovie = (e, id) => {
+  deleteMovie = (e) => {
     e.preventDefault()
     if(window.confirm('Are you sure you want to delete this user?')){
-      axios.delete(`http://localhost:5000/api/movies/${id}`)
-      .then(res=> console.log('delete: ', res))
+      axios.delete(`http://localhost:5000/api/movies/${this.state.movie.id}`)
+      .then(res=> {
+        this.props.history.push('/')
+      })
       .catch(err=>console.log(err))
     }
   };
