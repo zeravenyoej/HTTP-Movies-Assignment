@@ -22,11 +22,11 @@ const UpdateMovie = (props) => {
     };
 
     return (
-        <div>
-            <form>
-                <input type='text' name='title' placeholder='Title' value={updatedMove.title} onChange={handleChange}/>
-                <input type='text' name='director' placeholder='Director' value={updatedMove.director} onChange={handleChange}/>
-                <button onClick={handleSubmit}>Submit Edits</button>
+        <div className='updateDiv'>
+            <form className='updateForm'>
+                <input className='inputs' type='text' name='title' placeholder='Title' value={updatedMove.title} onChange={handleChange}/>
+                <input className='inputs' type='text' name='director' placeholder='Director' value={updatedMove.director} onChange={handleChange}/>
+                <button id='submit' onClick={handleSubmit}>Submit Edits</button>
             </form>
         </div>
     )

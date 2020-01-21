@@ -84,3 +84,24 @@ body {
   color: red;
   text-align: center;
 }
+
+.updateDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.updateForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs, #submit {
+  padding: 5%;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 3%;
+}
+
+#submit {
+  width: 60%;
+}
