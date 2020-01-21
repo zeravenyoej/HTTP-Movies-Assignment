@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import MovieCard from "./MovieCard";
 import UpdateMovie from './UpdateMovie';
 
@@ -33,6 +34,15 @@ export default class Movie extends React.Component {
     addToSavedList(this.state.movie);
   };
 
+  deleteMovie = (e, id) => {
+    e.preventDefault()
+    if(window.confirm('Are you sure you want to delete this user?')){
+      axios.delete(`http://localhost:5000/api/movies/${id}`)
+      .then(res=> console.log('delete: ', res))
+      .catch(err=>console.log(err))
+    }
+  };
+
   render() {
     if (!this.state.movie) {
       return <div>Loading movie information...</div>;
@@ -44,8 +54,8 @@ export default class Movie extends React.Component {
         <div className="save-button" onClick={this.saveMovie}>
           Save
         </div>
-        <button className='edit-button'>Edit</button>
-        <button className='delete-button'>Delete</button>
+        <Link to={`/update-movie/${this.state.movie.id}`} className='edit-button'>Edit</Link>
+        <button to={`/`}className='delete-button' onClick={this.deleteMovie}>Delete</button>
       </div>
     );
   }
