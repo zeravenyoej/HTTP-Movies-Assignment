@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const UpdateMovie = (props) => {
 
@@ -10,6 +11,16 @@ const UpdateMovie = (props) => {
         stars: []
     });
 
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/update-movie/${props.match.params.id}`)
+        .then(res=>{
+            setUpdatedMovie(res.data)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    },[props.match.params.id])
+
     const handleChange = e => {
         setUpdatedMovie({
             ...updatedMove,
@@ -19,10 +30,12 @@ const UpdateMovie = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault()
+        console.log('updated')
     };
 
     return (
         <div className='updateDiv'>
+            <h1>Update Movie</h1>
             <form className='updateForm'>
                 <input className='inputs' type='text' name='title' placeholder='Title' value={updatedMove.title} onChange={handleChange}/>
                 <input className='inputs' type='text' name='director' placeholder='Director' value={updatedMove.director} onChange={handleChange}/>
